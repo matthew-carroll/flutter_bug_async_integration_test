@@ -1,16 +1,12 @@
-# integration_test_async_bug
+# Integration Test Async Bug
 
-A new Flutter application.
+This app shows a button at the center of the screen. Pressing the button waits for 3 seconds
+, then sends a GET request over the network. A spinner is displayed during the action.
 
-## Getting Started
+Running this app on Android, iOS, web, and Mac OS results in expected behavior in real time.
 
-This project is a starting point for a Flutter application.
+Running this behavior as an integration test works as expected on Android, iOS, and Mac.
 
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
-
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+But, running this behavior as an integration test on web **doesn't** wait for the asynchronous
+behavior to complete. The test ends abruptly in the middle. This happens despite the display of
+an animating spinner during the request.
